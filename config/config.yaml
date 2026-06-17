@@ -1,0 +1,27 @@
+validation:
+  
+  allowed_currencies:
+    - USD
+    - EUR
+    - INR
+    - GBP
+
+fraud_rules:
+
+  high_amount_threshold: 100000
+
+  rapid_txt_limit: 5
+
+  rapid_txt_window_minutes: 2
+
+
+storage:
+
+  processed_path: data/processed/
+
+  rejected_path: data/rejected/
+
+
+
+
+
