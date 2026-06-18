@@ -1,4 +1,10 @@
 validation:
+
+  mandatory_columns:
+    - transaction_id
+    - account_number
+    - amount
+    - transaction_timestamp
   
   allowed_currencies:
     - USD
