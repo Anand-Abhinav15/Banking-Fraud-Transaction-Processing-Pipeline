@@ -32,7 +32,7 @@ def validate_data(df):
             if pd.isna(row[column]):
 
                 errors.append(
-                    f"Missing {columns}"
+                    f"Missing {column}"
                 )
 
         ## Amount Validation
