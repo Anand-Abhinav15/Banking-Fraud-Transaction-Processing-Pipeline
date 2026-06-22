@@ -20,12 +20,14 @@ fraud_rules:
 
   rapid_txt_window_minutes: 2
 
+  geo_widow_minutes: 10
+
 
 storage:
 
-  processed_path: data/processed/
+  processed_path: data/processed
 
-  rejected_path: data/rejected/
+  rejected_path: data/rejected
 
 
 
