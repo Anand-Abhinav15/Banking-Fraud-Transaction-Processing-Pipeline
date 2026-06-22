@@ -16,11 +16,11 @@ fraud_rules:
 
   high_amount_threshold: 100000
 
-  rapid_txt_limit: 5
+  rapid_txn_limit: 5
 
-  rapid_txt_window_minutes: 2
+  rapid_txn_window_minutes: 2
 
-  geo_widow_minutes: 10
+  geo_window_minutes: 10
 
 
 storage:
