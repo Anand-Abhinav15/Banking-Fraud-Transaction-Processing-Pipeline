@@ -28,31 +28,70 @@ def apply_fraud_rules(df):
 
     df["amount"] = df["amount"].astype(float)
 
-    ## Rapid Trasaction Detection
+    ## Rapid Transaction Detection (Rolling Window)
 
-    rapid_customers = []
-
-    customer_counts = (
-        df.groupby("customer_id").size()
-    )
-
-    rapid_customers = customer_counts[
-        customer_counts > rapid_txn_limit
-    ].index.tolist()
-
-    #Geo Anamoly Detection
-
-    geo_customers = []
+    rapid_transaction_ids = set()
 
     for customer_id, group in df.groupby("customer_id"):
 
-        unique_locations = (
-            group["location"].nunique()
+        group = group.sort_values(
+            "transaction_timestamp"
         )
 
-        if unique_locations >= 3:
+        timestamps = group["transaction_timestamp"]
 
-            geo_customers.append(customer_id)
+        for idx, current_time in timestamps.items():
+
+            window_start = (
+                current_time
+                - pd.Timedelta(minutes=2)
+            )
+
+            txn_count = (
+                (
+                    timestamps >= window_start
+                )
+                &
+                (
+                    timestamps <= current_time
+                )
+            ).sum()
+
+            if txn_count > rapid_txn_limit:
+
+                rapid_transaction_ids.add(idx)
+
+    ## Geo Anamoly Detection
+
+    geo_transaction_ids = set()
+
+    for customer_id, group in df.groupby("customer_id"):
+
+        group = group.sort_values(
+            "transaction_timestamp"
+        )
+
+        for i in range(1, len(group)):
+
+            current_row = group.iloc[i]
+
+            previous_row = group.iloc[i - 1]
+
+            time_diff = (
+                current_row["transaction_timestamp"]
+                - previous_row["transaction_timestamp"]
+            )
+
+            if (
+                current_row["location"]
+                != previous_row["location"]
+                and time_diff.total_seconds()
+                <= 600
+            ):
+
+                geo_transaction_ids.add(
+                    current_row.name
+                ) 
 
 
     ## Process Each Transaction
@@ -82,15 +121,15 @@ def apply_fraud_rules(df):
             score += 20
 
         # Rapid Transaction
-        if row["customer_id"] in rapid_customers:
+        if row.name in rapid_transaction_ids:
 
             flags.append("RAPID_TRANSACTION")
 
             score += 30
 
         
-        # Geo Anomoly
-        if row["customer_id"] in geo_customers:
+        # Geo Anomoly check
+        if row.name in geo_transaction_ids:
 
             flags.append("GEO_ANOMALY")
 
