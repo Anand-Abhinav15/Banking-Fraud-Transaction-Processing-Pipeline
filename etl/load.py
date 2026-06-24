@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
+from pathlib import Path
 
 import os
 
@@ -39,5 +40,39 @@ def load_to_postgres(df):
     )
 
 
+def save_parquet_partitioned(df):
 
+    logger.info("Saving parquet partitions")
+
+    for date, group in df.groupby("transaction_date"):
+
+        year = date.year
+        month = str(date.month).zfill(2)
+        day = str(date.day).zfill(2)
+
+        partition_path = (
+            f"data/pocessed/"
+            f"year= {year}"
+            f"month= {month}"
+            f"day = {day}"
+        )
+
+        Path(partition_path).mkdir(parents= True, exists_ok = True)
+
+        output_file = (
+            f"{partition_path}/"
+            f"transactions.parquet"
+        )
+
+        group.to_parquet(output_file, index=False)
+
+    logger.info("Parquet storage completed")
+
+
+
+def load_data(df):
+
+    load_to_postgres(df)
+
+    save_parquet_partitioned(df)
 
