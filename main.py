@@ -9,15 +9,17 @@ def run_pipeline():
 
     df = extract_data()
 
-    df = validate_data()
+    df = validate_data(df)
 
-    df = remove_duplicates()
+    df = remove_duplicates(df)
 
-    df = apply_fraud_rules()
+    df = apply_fraud_rules(df)
 
-    df = transform_data()
+    df = transform_data(df)
 
     load_data(df)
+
+    print("Pipeline completed successfully")
 
 
 if __name__ == "__main__":

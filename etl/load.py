@@ -31,7 +31,7 @@ def load_to_postgres(df):
 
     engine = get_engine()
 
-    df.sql(
+    df.to_sql(
         "clean_transactions", engine, if_exists = "append", index = False
     )
 
