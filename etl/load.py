@@ -24,8 +24,19 @@ def get_engine():
     return create_engine(connection_string)
 
 
+def load_to_postgres(df):
 
+    logger.info("Loading data to PostgreSQL")
 
+    engine = get_engine()
+
+    df.sql(
+        "clean_transactions", engine, if_exists = "append", index = False
+    )
+
+    logger.info(
+        f"{len(df)} records loaded"
+    )
 
 
 
