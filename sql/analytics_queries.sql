@@ -5,7 +5,7 @@ SELECT
     COUNT(*) AS total_transactions
 FROM clean_transactions
 GROUP BY transaction_date
-ORDER BY tansaction_date;
+ORDER BY transaction_date;
 
 
 #KPI 2 — Average Transaction Amount
