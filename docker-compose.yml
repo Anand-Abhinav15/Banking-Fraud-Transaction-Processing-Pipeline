@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: 1907
       POSTGRES_DB: banking_db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
