@@ -6,7 +6,7 @@ services:
     container_name: banking_postgres
     restart: always
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: bank_user
       POSTGRES_PASSWORD: 1907
       POSTGRES_DB: banking_db
     ports:

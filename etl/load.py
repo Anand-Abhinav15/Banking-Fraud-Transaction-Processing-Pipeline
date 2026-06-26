@@ -6,7 +6,9 @@ import os
 
 from etl.logger import logger
 
-load_dotenv()
+env_path = Path(__file__).resolve().parent.parent / ".env"
+
+load_dotenv(dotenv_path=env_path, override=True)
 
 
 def get_engine():
@@ -17,10 +19,18 @@ def get_engine():
     port = os.getenv("POSTGRES_PORT")
     db = os.getenv("POSTGRES_DB")
 
+    print(f"USER={user}")
+    print(f"PASSWORD={password}")
+    print(f"HOST={host}")
+    print(f"PORT={port}")
+    print(f"DB={db}")
+
     connection_string = (
         f"postgresql://{user}:{password}"
         f"@{host}:{port}/{db}"
     )
+
+    print(connection_string)
 
     return create_engine(connection_string)
 
@@ -51,13 +61,13 @@ def save_parquet_partitioned(df):
         day = str(date.day).zfill(2)
 
         partition_path = (
-            f"data/pocessed/"
-            f"year= {year}"
-            f"month= {month}"
+            f"data/processed/"
+            f"year= {year}/"
+            f"month= {month}/"
             f"day = {day}"
         )
 
-        Path(partition_path).mkdir(parents= True, exists_ok = True)
+        Path(partition_path).mkdir(parents= True, exist_ok = True)
 
         output_file = (
             f"{partition_path}/"
