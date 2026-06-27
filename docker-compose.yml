@@ -4,22 +4,36 @@ services:
   postgres:
     image: postgres:16
     container_name: banking_postgres
-    restart: always
+
     environment:
       POSTGRES_USER: bank_user
       POSTGRES_PASSWORD: 1907
       POSTGRES_DB: banking_db
+
     ports:
       - "5433:5432"
+
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   adminer:
     image: adminer
     container_name: banking_adminer
-    restart: always
     ports:
       - "8080:8080"
+    
+    depends_on:
+      - postgres
+  
+  python-etl:
+    build: .
+    container_name: banking_python_etl
+
+    environment:
+      - APP_ENV: docker
+    
+    depends_on:
+      - postgres
 
 volumes:
   postgres_data:
