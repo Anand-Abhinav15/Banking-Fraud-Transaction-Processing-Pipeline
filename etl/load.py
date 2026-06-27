@@ -6,7 +6,11 @@ import os
 
 from etl.logger import logger
 
-env_path = Path(__file__).resolve().parent.parent / ".env"
+ENV = os.getenv("APP_ENV", "local")
+
+env_file = ".env.docker" if ENV == "docker" else ".env.local"
+
+env_path = Path(__file__).resolve().parent.parent / env_file
 
 load_dotenv(dotenv_path=env_path, override=True)
 
