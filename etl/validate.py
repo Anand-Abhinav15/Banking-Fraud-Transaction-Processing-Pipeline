@@ -4,6 +4,8 @@ from datetime import datetime
 from etl.logger import logger
 from etl.config_loader import load_config
 
+from etl.paths import REJECTED_PATH
+
 def validate_data(df):
 
     logger.info("Starting validation")
@@ -142,7 +144,7 @@ def validate_data(df):
     )
 
     rejected_records.to_csv(
-        "data/rejected/rejected_transactions.csv",
+        REJECTED_PATH / "rejected_transactions.csv",
         index = False
     )
 

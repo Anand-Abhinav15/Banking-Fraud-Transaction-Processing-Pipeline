@@ -3,8 +3,10 @@ from pathlib import Path
 
 from etl.logger import logger
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-RAW_DATA_PATH = BASE_DIR / "data" / "raw"
+from etl.paths import RAW_DATA_PATH
+RAW_DATA_PATH = RAW_DATA_PATH
+#BASE_DIR = Path(__file__).resolve().parent.parent
+#RAW_DATA_PATH = BASE_DIR / "data" / "raw"
 
 
 def extract_data():

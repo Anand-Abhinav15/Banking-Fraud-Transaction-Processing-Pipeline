@@ -2,6 +2,8 @@ import pandas as pd
 
 from etl.logger import logger
 
+from etl.paths import REJECTED_PATH
+
 def remove_duplicates(df):
 
     logger.info("Starting deduplication process")
@@ -19,7 +21,7 @@ def remove_duplicates(df):
     ]
 
     duplicate_records.to_csv(
-        "data/rejected/duplicate_transaction.csv",
+        REJECTED_PATH / "duplicate_transaction.csv",
         index = False
     )
 

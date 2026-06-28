@@ -7,6 +7,8 @@ import os
 
 from etl.logger import logger
 
+from etl.paths import PROCESSED_PATH
+
 ENV = os.getenv("APP_ENV", "local")
 
 env_file = ".env.docker" if ENV == "docker" else ".env.local"
