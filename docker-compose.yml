@@ -30,7 +30,7 @@ services:
     container_name: banking_python_etl
 
     environment:
-      - APP_ENV: docker
+      APP_ENV: docker
     
     depends_on:
       - postgres

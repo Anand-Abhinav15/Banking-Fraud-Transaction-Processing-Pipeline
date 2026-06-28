@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 from pathlib import Path
+import uuid
 
 import os
 
@@ -45,12 +46,50 @@ def load_to_postgres(df):
 
     engine = get_engine()
 
-    df.to_sql(
-        "clean_transactions", engine, if_exists = "append", index = False
+    temp_table = (
+        f"temp_transactions_{uuid.uuid4().hex[:8]}"
     )
 
+    df.to_sql(
+        temp_table, engine, index = False, if_exists = "replace"
+    )
+
+    columns = list(df.columns)
+
+    column_names = ", ".join(columns)
+
+    updated_columns = ", ".join(
+        [
+            f"{col}= EXCLUDED.{col}"
+            for col in columns
+            if col != "transaction_id"
+        ]
+    )
+
+    upsert_query = f"""
+    INSERT INTO clean_transactions
+    ({column_names})
+
+    SELECT
+    {column_names}
+    FROM {temp_table}
+
+    ON CONFLICT (transaction_id)
+    DO UPDATE
+    SET
+    {updated_columns}
+    """
+
+    with engine.begin() as conn:
+
+        conn.exec_driver_sql(upsert_query)
+
+        conn.exec_driver_sql(
+            f"DROP TABLE {temp_table}"
+        )
+
     logger.info(
-        f"{len(df)} records loaded"
+        f"{len(df)} records upserted"
     )
 
 
