@@ -130,6 +130,19 @@ services:
       - ./plugins:/opt/airflow/plugins
       - .:/opt/airflow/project
 
+  superset:
+    image: apache/superset:latest
+    container_name: banking_superset
+
+    ports:
+      - "8088:8088"
+
+    environment:
+      SUPERSET_SECRET_KEY: banking_fraud_secret_key
+
+    depends_on:
+      - postgres
+
 volumes:
   postgres_data:
 
