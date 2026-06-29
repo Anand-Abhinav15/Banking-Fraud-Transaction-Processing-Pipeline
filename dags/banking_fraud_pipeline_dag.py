@@ -6,7 +6,14 @@ import sys
 
 sys.path.append("/opt/airflow/project")
 
-from main import run_pipeline
+from etl.airflow_tasks import(
+    extract_task,
+    validate_task,
+    deduplicate_task,
+    fraud_task,
+    transform_task,
+    load_task
+)
 
 default_args = {
     "owner": "abhinav",
@@ -22,8 +29,28 @@ with DAG(
     tags= ["banking", "fraud", "etl"]
 ) as dag:
 
-    run_pipeline_task = PythonOperator(
-        task_id = "run_pipeline",
-        python_callable = run_pipeline
+    extract = PythonOperator(
+        task_id = "extract", python_callable = extract_task
     )
 
+    validate = PythonOperator(
+        task_id = "validate", python_callable = validate_task
+    )
+
+    deduplicate = PythonOperator(
+        task_id = "deduplicate", python_callable = deduplicate_task
+    )
+
+    fraud = PythonOperator(
+        task_id = "fraud_detection", python_callable = fraud_task
+    )
+
+    transform = PythonOperator(
+        task_id = "transform", python_callable = transform_task
+    )
+
+    load = PythonOperator(
+        task_id = "load", python_callable = load_task
+    )
+
+    (extract >> validate >> deduplicate >> fraud >> transform >> load)

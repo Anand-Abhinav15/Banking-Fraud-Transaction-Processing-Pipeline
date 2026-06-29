@@ -10,6 +10,7 @@ PROJECT_ROOT = (
 RAW_DATA_PATH = PROJECT_ROOT / "data" / "raw"
 PROCESSED_PATH = PROJECT_ROOT / "data" / "processed"
 REJECTED_PATH = PROJECT_ROOT / "data" / "rejected"
+INTERMEDIATE_PATH = PROJECT_ROOT / "data" / "intermediate"
 CONFIG_PATH = PROJECT_ROOT / "config" / "config.yaml"
 SQL_PATH = PROJECT_ROOT / "sql"
 
