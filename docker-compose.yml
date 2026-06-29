@@ -30,7 +30,11 @@ services:
     container_name: banking_python_etl
 
     environment:
-      APP_ENV: docker
+      POSTGRES_USER: bank_user
+      POSTGRES_PASSWORD: 1907
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: banking_db
     
     depends_on:
       - postgres
@@ -42,6 +46,12 @@ services:
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://bank_user:1907@postgres:5432/banking_db
+
+      POSTGRES_USER: bank_user
+      POSTGRES_PASSWORD: 1907
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: banking_db
 
     command: >
       bash -c "
@@ -76,6 +86,12 @@ services:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://bank_user:1907@postgres:5432/banking_db
 
+      POSTGRES_USER: bank_user
+      POSTGRES_PASSWORD: 1907
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: banking_db
+
     command: webserver
 
     depends_on:
@@ -93,8 +109,15 @@ services:
     restart: always
 
     environment:
+      APP_ENV: docker
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://bank_user:1907@postgres:5432/banking_db
+
+      POSTGRES_USER: bank_user
+      POSTGRES_PASSWORD: 1907
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: banking_db
 
     command: scheduler
 

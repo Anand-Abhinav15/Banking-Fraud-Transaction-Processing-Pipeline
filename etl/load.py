@@ -2,20 +2,16 @@ from sqlalchemy import create_engine
 from dotenv import load_dotenv
 from pathlib import Path
 import uuid
-
 import os
 
 from etl.logger import logger
-
 from etl.paths import PROCESSED_PATH
 
-ENV = os.getenv("APP_ENV", "local")
+# Load .env.local only if it exists
+env_path = Path(".env.local")
 
-env_file = ".env.docker" if ENV == "docker" else ".env.local"
-
-env_path = Path(__file__).resolve().parent.parent / env_file
-
-load_dotenv(dotenv_path=env_path, override=True)
+if env_path.exists():
+    load_dotenv(env_path)
 
 
 def get_engine():
@@ -106,17 +102,17 @@ def save_parquet_partitioned(df):
         day = str(date.day).zfill(2)
 
         partition_path = (
-            f"data/processed/"
-            f"year= {year}/"
-            f"month= {month}/"
-            f"day = {day}"
+            PROCESSED_PATH
+            / f"year= {year}"
+            / f"month= {month}"
+            / f"day = {day}"
         )
 
-        Path(partition_path).mkdir(parents= True, exist_ok = True)
+        partition_path.mkdir(parents=True, exist_ok=True)
 
         output_file = (
-            f"{partition_path}/"
-            f"transactions.parquet"
+            partition_path
+            / "transactions.parquet"
         )
 
         group.to_parquet(output_file, index=False)
