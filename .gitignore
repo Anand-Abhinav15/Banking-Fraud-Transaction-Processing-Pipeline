@@ -1,9 +1,29 @@
-.venv
-.git
-__pycache__
+# Python
+__pycache__/
 *.pyc
-logs
-airflow_logs
-data/processed
-data/rejected
-reports
+*.pyo
+*.pyd
+
+# Virtual Environment
+.venv/
+venv/
+
+# Environment files
+.env
+.env.local
+.env.docker
+
+# Airflow
+airflow/logs/
+
+# Data
+data/processed/
+data/rejected/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

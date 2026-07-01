@@ -1,0 +1,89 @@
+2026-06-30 08:22:47,566 - INFO - Starting extraction process
+2026-06-30 08:22:47,567 - INFO - Found 3 files
+2026-06-30 08:22:47,567 - INFO - Reading file: transactions_2026_01_01.csv
+2026-06-30 08:22:50,817 - INFO - transactions_2026_01_01.csv contains 10 records
+2026-06-30 08:22:50,817 - INFO - Reading file: transactions_2026_01_02.csv
+2026-06-30 08:22:50,819 - INFO - transactions_2026_01_02.csv contains 10 records
+2026-06-30 08:22:50,819 - INFO - Reading file: transactions_2026_large.csv
+2026-06-30 08:22:51,075 - INFO - transactions_2026_large.csv contains 100000 records
+2026-06-30 08:22:51,445 - INFO - Total records extracted: 100020
+2026-06-30 08:22:51,446 - INFO - Starting validation
+2026-06-30 08:24:48,177 - INFO - Valid records: 16
+2026-06-30 08:24:48,178 - INFO - Rejected records: 100004
+2026-06-30 08:24:48,781 - INFO - Starting deduplication process
+2026-06-30 08:24:49,159 - INFO - Duplicate rows removed: 1
+2026-06-30 08:24:49,159 - INFO - Starting fraud detection
+2026-06-30 08:24:49,339 - INFO - Total Fraud Transactions: 8
+2026-06-30 08:24:49,339 - INFO - Fraud detection completed
+2026-06-30 08:24:49,339 - INFO - High Risk Transaction: 0
+2026-06-30 08:24:49,339 - INFO - Starting transformation layer
+2026-06-30 08:24:49,375 - INFO - Transformation completed
+2026-06-30 08:24:49,375 - INFO - Loading data to PostgreSQL
+2026-07-01 08:32:52,680 - INFO - Starting extraction process
+2026-07-01 08:32:52,697 - INFO - Found 3 files
+2026-07-01 08:32:52,697 - INFO - Reading file: transactions_2026_01_01.csv
+2026-07-01 08:32:52,897 - INFO - transactions_2026_01_01.csv contains 10 records
+2026-07-01 08:32:52,897 - INFO - Reading file: transactions_2026_01_02.csv
+2026-07-01 08:32:52,907 - INFO - transactions_2026_01_02.csv contains 10 records
+2026-07-01 08:32:52,907 - INFO - Reading file: transactions_2026_large.csv
+2026-07-01 08:32:53,206 - INFO - transactions_2026_large.csv contains 100000 records
+2026-07-01 08:32:53,272 - INFO - Total records extracted: 100020
+2026-07-01 08:32:53,272 - INFO - Starting validation
+2026-07-01 08:33:45,190 - INFO - Valid records: 100016
+2026-07-01 08:33:45,190 - INFO - Rejected records: 4
+2026-07-01 08:33:45,387 - INFO - Starting deduplication process
+2026-07-01 08:33:45,977 - INFO - Duplicate rows removed: 1
+2026-07-01 08:33:45,978 - INFO - Starting fraud detection
+2026-07-01 08:34:52,400 - INFO - Total Fraud Transactions: 56279
+2026-07-01 08:34:52,401 - INFO - Fraud detection completed
+2026-07-01 08:34:52,401 - INFO - High Risk Transaction: 6386
+2026-07-01 08:34:52,402 - INFO - Starting transformation layer
+2026-07-01 08:34:52,557 - INFO - Transformation completed
+2026-07-01 08:34:52,557 - INFO - Loading data to PostgreSQL
+2026-07-01 08:38:55,453 - INFO - Starting extraction process
+2026-07-01 08:38:55,453 - INFO - Found 3 files
+2026-07-01 08:38:55,453 - INFO - Reading file: transactions_2026_01_01.csv
+2026-07-01 08:38:55,461 - INFO - transactions_2026_01_01.csv contains 10 records
+2026-07-01 08:38:55,461 - INFO - Reading file: transactions_2026_01_02.csv
+2026-07-01 08:38:55,463 - INFO - transactions_2026_01_02.csv contains 10 records
+2026-07-01 08:38:55,463 - INFO - Reading file: transactions_2026_large.csv
+2026-07-01 08:38:55,813 - INFO - transactions_2026_large.csv contains 100000 records
+2026-07-01 08:38:55,816 - INFO - Total records extracted: 100020
+2026-07-01 08:38:55,816 - INFO - Starting validation
+2026-07-01 08:39:46,102 - INFO - Valid records: 100016
+2026-07-01 08:39:46,102 - INFO - Rejected records: 4
+2026-07-01 08:39:46,220 - INFO - Starting deduplication process
+2026-07-01 08:39:46,291 - INFO - Duplicate rows removed: 1
+2026-07-01 08:39:46,292 - INFO - Starting fraud detection
+2026-07-01 08:40:51,890 - INFO - Total Fraud Transactions: 56279
+2026-07-01 08:40:51,890 - INFO - Fraud detection completed
+2026-07-01 08:40:51,890 - INFO - High Risk Transaction: 6386
+2026-07-01 08:40:51,891 - INFO - Starting transformation layer
+2026-07-01 08:40:51,995 - INFO - Transformation completed
+2026-07-01 08:40:51,996 - INFO - Loading data to PostgreSQL
+2026-07-01 08:55:06,056 - INFO - Starting extraction process
+2026-07-01 08:55:06,057 - INFO - Found 3 files
+2026-07-01 08:55:06,057 - INFO - Reading file: transactions_2026_01_01.csv
+2026-07-01 08:55:06,063 - INFO - transactions_2026_01_01.csv contains 10 records
+2026-07-01 08:55:06,063 - INFO - Reading file: transactions_2026_01_02.csv
+2026-07-01 08:55:06,065 - INFO - transactions_2026_01_02.csv contains 10 records
+2026-07-01 08:55:06,066 - INFO - Reading file: transactions_2026_large.csv
+2026-07-01 08:55:06,373 - INFO - transactions_2026_large.csv contains 100000 records
+2026-07-01 08:55:06,374 - INFO - Total records extracted: 100020
+2026-07-01 08:55:06,374 - INFO - Starting validation
+2026-07-01 08:56:00,887 - INFO - Valid records: 100016
+2026-07-01 08:56:00,887 - INFO - Rejected records: 4
+2026-07-01 08:56:01,144 - INFO - Starting deduplication process
+2026-07-01 08:56:01,352 - INFO - Duplicate rows removed: 1
+2026-07-01 08:56:01,353 - INFO - Starting fraud detection
+2026-07-01 08:57:11,004 - INFO - Total Fraud Transactions: 56279
+2026-07-01 08:57:11,004 - INFO - Fraud detection completed
+2026-07-01 08:57:11,004 - INFO - High Risk Transaction: 6386
+2026-07-01 08:57:11,006 - INFO - Starting transformation layer
+2026-07-01 08:57:11,125 - INFO - Transformation completed
+2026-07-01 08:57:11,125 - INFO - Loading data to PostgreSQL
+2026-07-01 08:57:26,025 - INFO - 100015 records upserted
+2026-07-01 08:57:26,026 - INFO - Loading fraud transactions table
+2026-07-01 08:57:32,637 - INFO - 56279 fraud records loaded
+2026-07-01 08:57:32,638 - INFO - Saving parquet partitions
+2026-07-01 08:57:34,918 - INFO - Parquet storage completed

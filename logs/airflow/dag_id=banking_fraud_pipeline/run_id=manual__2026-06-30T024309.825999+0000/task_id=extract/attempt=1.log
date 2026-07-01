@@ -1,0 +1,27 @@
+[2026-06-30T02:43:40.532+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-06-30T02:43:40.561+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: banking_fraud_pipeline.extract manual__2026-06-30T02:43:09.825999+00:00 [queued]>
+[2026-06-30T02:43:40.603+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: banking_fraud_pipeline.extract manual__2026-06-30T02:43:09.825999+00:00 [queued]>
+[2026-06-30T02:43:40.604+0000] {taskinstance.py:2856} INFO - Starting attempt 1 of 2
+[2026-06-30T02:43:40.795+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): extract> on 2026-06-30 02:43:09.825999+00:00
+[2026-06-30T02:43:40.920+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'banking_fraud_pipeline', 'extract', 'manual__2026-06-30T02:43:09.825999+00:00', '--job-id', '39', '--raw', '--subdir', 'DAGS_FOLDER/banking_fraud_pipeline_dag.py', '--cfg-path', '/tmp/tmp8bgk9uic']
+[2026-06-30T02:43:40.923+0000] {standard_task_runner.py:105} INFO - Job 39: Subtask extract
+[2026-06-30T02:43:40.925+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=2368) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-30T02:43:40.926+0000] {standard_task_runner.py:72} INFO - Started process 2376 to run task
+[2026-06-30T02:43:41.109+0000] {task_command.py:467} INFO - Running <TaskInstance: banking_fraud_pipeline.extract manual__2026-06-30T02:43:09.825999+00:00 [running]> on host 436f876ddd92
+[2026-06-30T02:43:41.461+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='abhinav' AIRFLOW_CTX_DAG_ID='banking_fraud_pipeline' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2026-06-30T02:43:09.825999+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-30T02:43:09.825999+00:00'
+[2026-06-30T02:43:41.475+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-06-30T02:43:41.661+0000] {extract.py:14} INFO - Starting extraction process
+[2026-06-30T02:43:41.666+0000] {extract.py:23} INFO - Found 3 files
+[2026-06-30T02:43:41.666+0000] {extract.py:29} INFO - Reading file: transactions_2026_01_01.csv
+[2026-06-30T02:43:42.573+0000] {extract.py:33} INFO - transactions_2026_01_01.csv contains 10 records
+[2026-06-30T02:43:42.575+0000] {extract.py:29} INFO - Reading file: transactions_2026_01_02.csv
+[2026-06-30T02:43:42.581+0000] {extract.py:33} INFO - transactions_2026_01_02.csv contains 10 records
+[2026-06-30T02:43:42.582+0000] {extract.py:29} INFO - Reading file: transactions_2026_large.csv
+[2026-06-30T02:43:43.012+0000] {extract.py:33} INFO - transactions_2026_large.csv contains 100000 records
+[2026-06-30T02:43:43.105+0000] {extract.py:44} INFO - Total records extracted: 100020
+[2026-06-30T02:43:43.282+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-06-30T02:43:43.322+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-06-30T02:43:43.323+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=banking_fraud_pipeline, task_id=extract, run_id=manual__2026-06-30T02:43:09.825999+00:00, execution_date=20260630T024309, start_date=20260630T024340, end_date=20260630T024343
+[2026-06-30T02:43:43.429+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 0
+[2026-06-30T02:43:43.561+0000] {taskinstance.py:3891} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-06-30T02:43:43.563+0000] {local_task_job_runner.py:240} INFO - ::endgroup::
