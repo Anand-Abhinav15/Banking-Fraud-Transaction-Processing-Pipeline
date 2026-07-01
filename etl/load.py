@@ -11,10 +11,17 @@ from etl.paths import PROCESSED_PATH
 env_path = Path(".env.local")
 
 if env_path.exists():
-    load_dotenv(env_path)
+    load_dotenv(env_path, override=True)
+
+print("POSTGRES_USER =", os.getenv("POSTGRES_USER"))
+print("POSTGRES_PORT =", os.getenv("POSTGRES_PORT"))
+print("POSTGRES_DB =", os.getenv("POSTGRES_DB"))
 
 
 def get_engine():
+
+    print("APP_ENV =", os.getenv("APP_ENV"))
+    print("ENV PATH =", env_path)
 
     user = os.getenv("POSTGRES_USER")
     password = os.getenv("POSTGRES_PASSWORD")
@@ -88,6 +95,25 @@ def load_to_postgres(df):
 
     logger.info(
         f"{len(df)} records upserted"
+    )
+
+    logger.info(
+    "Loading fraud transactions table"
+    )
+
+    fraud_df = df[
+        df["fraud_flag"] != ""
+    ]
+
+    fraud_df.to_sql(
+        "fraud_transactions",
+        engine,
+        if_exists="replace",
+        index=False
+    )
+
+    logger.info(
+        f"{len(fraud_df)} fraud records loaded"
     )
 
 
